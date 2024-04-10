@@ -4,18 +4,24 @@ import { useState } from 'react';
 import Head from 'next/head';
 
 const Home: React.FC = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [result, setResult] = useState('');
+  const [encodeInput, setEncodeInput] = useState('');
+  const [decodeInput, setDecodeInput] = useState('');
+  const [encodedResult, setEncodedResult] = useState('');
+  const [decodedResult, setDecodedResult] = useState('');
 
-  const handleEncode = () => {
-    setResult(encodeURIComponent(inputValue));
+  const handleEncodeInputChange = (e) => {
+    const value = e.target.value;
+    setEncodeInput(value);
+    setEncodedResult(encodeURIComponent(value));
   };
 
-  const handleDecode = () => {
+  const handleDecodeInputChange = (e) => {
+    const value = e.target.value;
+    setDecodeInput(value);
     try {
-      setResult(decodeURIComponent(inputValue));
+      setDecodedResult(decodeURIComponent(value));
     } catch (error) {
-      setResult('デコードエラー: 不正な入力');
+      setDecodedResult('デコードエラー: 不正な入力');
     }
   };
 
@@ -29,39 +35,27 @@ const Home: React.FC = () => {
         <div className="contact-form row">
           <div className="form-field col x-100">
             <input 
-              id="input" 
+              id="encodeInput" 
               className="input-text js-input" 
               type="text" 
-              value={inputValue} 
-              onChange={(e) => setInputValue(e.target.value)} 
+              value={encodeInput} 
+              onChange={handleEncodeInputChange} 
               required 
             />
-            <label className="label" htmlFor="input">テキストを入力</label>
-          </div>
-          <div className="form-field col x-100 align-center">
-            <input 
-              className="submit-btn" 
-              type="button" 
-              value="エンコード" 
-              onClick={handleEncode} 
-            />
-            <input 
-              className="submit-btn" 
-              type="button" 
-              value="デコード" 
-              onClick={handleDecode} 
-              style={{ marginLeft: '10px' }}
-            />
+            <label className="label" htmlFor="encodeInput">エンコード</label>
+            <div id="encodedResult" className="result" style={{ background: '#E0F7FA', padding: '10px', borderRadius: '5px', wordBreak: 'break-all', overflowWrap: 'break-word' }}>{encodedResult}</div>
           </div>
           <div className="form-field col x-100">
-            <label className="label">処理結果:</label>
-            <textarea 
-              id="result" 
+            <input 
+              id="decodeInput" 
               className="input-text js-input" 
-              value={result} 
-              readOnly
-              style={{ height: '100px' }}
+              type="text" 
+              value={decodeInput} 
+              onChange={handleDecodeInputChange} 
+              required 
             />
+            <label className="label" htmlFor="decodeInput">デコード</label>
+            <div id="decodedResult" className="result" style={{ background: '#E1F5FE', padding: '10px', borderRadius: '5px', wordBreak: 'break-all', overflowWrap: 'break-word' }}>{decodedResult}</div>
           </div>
         </div>
       </div>
