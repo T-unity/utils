@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Head from 'next/head';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Home: React.FC = () => {
   const [encodeInput, setEncodeInput] = useState('');
@@ -9,13 +11,13 @@ const Home: React.FC = () => {
   const [encodedResult, setEncodedResult] = useState('');
   const [decodedResult, setDecodedResult] = useState('');
 
-  const handleEncodeInputChange = (e) => {
+  const handleEncodeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEncodeInput(value);
     setEncodedResult(encodeURIComponent(value));
   };
 
-  const handleDecodeInputChange = (e) => {
+  const handleDecodeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setDecodeInput(value);
     try {
@@ -27,8 +29,10 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Header />
       <Head>
         <link href="https://fonts.googleapis.com/css?family=Raleway:300|Lusitana:400,700" rel="stylesheet" />
+        <link rel="icon" href="/favicon.jpg" />
       </Head>
       <div className="get-in-touch">
         <h1 className="title">URL エンコーダー/デコーダー</h1>
@@ -59,6 +63,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
