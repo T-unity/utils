@@ -17,17 +17,49 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Raleway', sans-serif;
+  background-color: white;
+  color: #333;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.get-in-touch {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  color: #333;
+  text-align: center;
+}
+
+.input-text {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.submit-btn {
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.submit-btn:hover {
+  background-color: #009fdd;
 }
